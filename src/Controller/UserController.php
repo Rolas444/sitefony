@@ -15,8 +15,8 @@ class UserController extends AbstractController
     //         'controller_name' => 'UserController',
     //     ]);
     // }
-    public function getUsers(){
-        $em= $this->getDoctrine()->getManager();
+    public function getUsers(ManagerRegistry $doctrine){
+        $em= $doctrine->getManager();
         $listUsers = $em->getRepositories('App:Users')->findBy([], ['name'=>'ASC']);
         return $this->render('user/users.html.twig', [
             'listUsers' => $listUsers
